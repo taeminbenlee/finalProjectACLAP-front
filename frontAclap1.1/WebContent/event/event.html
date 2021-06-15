@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- jquary -->
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- 커스텀 css -->
+<link rel="stylesheet" href="../css/event.css">
+
+
+</head>
+<body style='background-color:#FFFFF9'>
+
+
+<div id='naviBar'></div>
+<div class="container-fluid">
+	<div class='eventMainImg'>
+		<p class=a_title>EVENT</p>
+		
+	</div>
+	<div class="a_eventView">
+	<ul class="a_eventList">
+		<li class="a_event">
+			<a href="javascript:regiEvent();" class="a_eventATag"> 
+				<div class='a_eventImgBox'>
+					<img class="a_eventImg" src="../images/regiEvent.png">
+				</div>
+				<div class="a_eventFont">가입 이벤트</div>
+				<div class="a_eventTitle">
+					신규 가입시 3000포인트 제공!!
+				</div>
+			</a>
+		</li>
+		<li class="a_event">
+			<a href="javascript:chargeEvent();" class="a_eventATag">
+				<div class='a_eventImgBox'>
+					<img class="a_eventImg" src="../images/eventImg.jpg">
+				</div>
+				<div class="a_eventFont">
+					충전 이벤트
+				</div>
+				<div class="a_eventTitle" >
+					처음 충전 시 3000포인트를 드립니다!!
+				</div>
+			</a>
+		</li>
+		<li class="a_event">
+			<a href="javascript:proEvent();" class="a_eventATag">
+				<div class='a_eventImgBox'>
+					<img class="a_eventImg" src="../images/eventImg2.jpg">
+				</div>	
+				<div class="a_eventFont">
+					할인 이벤트
+				</div>
+				<div class="a_eventTitle">
+					개발자에 도전하시는 분~ 10% 할인특가!!
+				</div>
+			</a>
+		</li>
+		<li class="a_event">
+			<a href="javascript:cookEvent();" class="a_eventATag"> 
+				<div class='a_eventImgBox'>
+					<img class="a_eventImg" src="../images/eventImg3.jpg">
+				</div>	
+				<div class="a_eventFont">
+					할인 이벤트
+				</div>
+				<div class="a_eventTitle">
+					10% 할인!! 빵에 환장하시는 분 직접 <br>만들어 보세요~~
+				</div>
+			</a>
+		</li>
+		<li class="a_event">
+			<a href="javascript:stampEvent();" class="a_eventATag">
+				<div class='a_eventImgBox'>
+					<img class="a_eventImg" src="../images/eventImg4.jpg">
+				</div>	
+				<div class="a_eventFont">
+					충전 이벤트
+				</div>
+				<div class="a_eventTitle">
+					스탬프를 5개 모을 시 5000포인트 제공!!
+				</div>
+			</a>
+		</li>
+		<li class="a_event">
+			<a href="" class="a_eventATag">
+				<div class='a_eventImgBox'>
+					<img class="a_eventImg" src="../images/eventRegi.png">
+				</div>	
+				<div class="a_eventFont">
+					이벤트
+				</div>
+				<div class=a_eventTitle>
+					처음 가입시 3000포인트 제공!!
+				</div>
+			</a>
+		</li>
+	</ul>
+	</div>
+</div>
+<div id='footer'></div>
+<script type="text/javascript">
+	$("#naviBar").load("../navibar.html");
+	$("#footer").load("../footer.html");
+
+
+// 가입 이벤트 이동
+function regiEvent() {
+//	alert("들어오나??");
+	
+	// alert(json.email);
+	if(login == null){
+		location.href = "../loginRegi/loginRegi.html";
+	}else{
+		alert("event");
+	}
+}
+
+// 충전 이벤트 이동
+function chargeEvent(){
+	if(login == null){
+		location.href = "../loginRegi/loginRegi.html";
+	}else{
+		alert("event");
+	}
+}
+
+// 프로그래밍 이벤트 이동
+function proEvent(){
+	if(login == null){
+		location.href = "../loginRegi/loginRegi.html";
+	}else{
+		alert("아님~");
+	}
+}
+
+// 빵 이벤트 이동
+function cookEvent(){
+	if(login == null){
+		location.href = "../loginRegi/loginRegi.html";
+	}else{
+		alert("event");
+	}
+}
+
+// 스탬프 이벤트 이동
+function stampEvent(){
+	if(login == null){
+		location.href = "../loginRegi/loginRegi.html";
+	}else{
+		alert("event");
+	}
+}
+
+//프로그래밍 이벤트 이동
+function proEvent(){
+	if(login == null){
+		location.href = "../loginRegi/loginRegi.html";
+	}else{
+		alert("아님~");
+	}
+}
+
+$(document).ready(function(){
+	$('html').scrollTop(0);
+});
+</script>
+
+</body>
+</html>
