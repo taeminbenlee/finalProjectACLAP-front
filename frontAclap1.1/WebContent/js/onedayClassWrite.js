@@ -685,7 +685,7 @@ function onedayClassWriteAf(){
 	}
 	else{
 		$.ajax({
-			url:"http://localhost:3000/onedayClassWrite", 
+			url:"http://192.168.0.230:3000/onedayClassWrite", 
 			type:'post',
 			data : new FormData($("#onedayClassWriteFrm")[0]), 
 			enctype : 'multipart/form-data',

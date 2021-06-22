@@ -9,7 +9,7 @@
 
 <!-- icon -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link href="../fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
 
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/navibar.css">
 
+<!--  -->
 <!-- iamport -->
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
 
@@ -131,7 +132,7 @@ if(json == null){
 
 // endDate가 지난 클래스를 del=1로 처리하는 ajax
 $.ajax({
-	url:"http://localhost:3000/updateEndClass", 
+	url:"http://192.168.0.230:3000/updateEndClass", 
     type:'post',
     success: function(count){
     	// return 괜히 했나??....

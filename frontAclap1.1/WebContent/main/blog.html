@@ -102,7 +102,7 @@ $(document).ready(function () {
 function getYourInterest(yourSeq) {
 	
 	$.ajax({
-		url:"http://localhost:3000/getYourInterest",
+		url:"http://192.168.0.230:3000/getYourInterest",
 		type:"get",
 		data: {seq:yourSeq},
 		success:function(data){
@@ -124,7 +124,7 @@ function getYourInterest(yourSeq) {
 	
 function getBlogData(data) {
 		$.ajax({
-			url:"http://localhost:3000/blog",
+			url:"http://192.168.0.230:3000/blog",
 			type:"get",
 			data: {keyword:data},
 			success:function( list ){

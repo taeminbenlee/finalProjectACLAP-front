@@ -7,9 +7,7 @@
 <!-- navibar CSS -->
 <link rel="stylesheet" href="../css/navibar.css">
 
-<!-- iamport -->
-<!-- <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
- -->
+
 </head>
 <body>
 <div class="header">
@@ -130,12 +128,13 @@ $(document).ready(function(){
 	
 	// 유저 모달창 띄우기
 	let chNum = 0;
+	let pppoint =0;
 	$("#len5").click(function(){
 		$(".hide_modal").toggleClass("show_modal");			
 		if(login != null){
 			let json = JSON.parse(login);
 			$.ajax({
-				url:"http://localhost:3000/login", 
+				url:"http://192.168.0.230:3000/login", 
 				type:'post',
 				data : {email:json.email, pwd:json.pwd},
 				success:function( json ){			
@@ -143,7 +142,9 @@ $(document).ready(function(){
 					$(".loginModalImg").attr('src', json.profilePic);
 					$(".loginModalNickName").html(json.nickName);
 					$(".loginModalEmail").html(json.email);
-					$(".myPointCheck").html("내 포인트 " + json.myPoint);			
+					$(".myPointCheck").html("내 포인트 " + json.myPoint);	
+					pppoint = json.myPoint;
+					
 					// 새로 클래스를 신청한 사람이 있는지 뿌려주는 코드 들어가야함!
 					$("#points").append("$" + json.myPoint);
 			
@@ -170,7 +171,7 @@ $(document).ready(function(){
 		if(login != null){
 			let json = JSON.parse(login);
 			$.ajax({
-				url:"http://localhost:3000/noAnserNoticeCount", 
+				url:"http://192.168.0.230:3000/noAnserNoticeCount", 
 				type:'post',
 				success:function( count ){			
 					// 문의글 목록 보이는 코드 들어가야함
@@ -291,27 +292,37 @@ function event(){
 //로그인 세션
 	let login = JSON.parse(sessionStorage.getItem("login"));
 	let email = "";
-	let myPoint = "";
+
 	let phoneNum = "";
 	
 	if(login != null){	
 		email = login.email;
-		myPoint = login.myPoint;
+
 		phoneNum = login.phoneNum;
-		myPoint = parseInt(myPoint);
+
 	}
-	
-//	 $("#points").append("$" + myPoint);
-	
-//	alert("마이포인트타입"+ typeof myPoint + "현재 포인트" + myPoint);
+
 
 
 $(document).ready(function(){
+	let pppoint = 0;
 	
-	//alert("마이포인트타입"+ typeof myPoint + "현재 포인트" + myPoint);
+	
 	let money = 0;
 	//충전할 금액 입력 후
 	document.getElementById('chargeMoney').onmouseout = function(){
+		
+		$.ajax({
+			url:"http://192.168.0.230:3000/login", 
+			type:'post',
+			data : {email:json.email, pwd:json.pwd},
+			success:function( json ){			
+				pppoint = json.myPoint;
+			},
+			error:function(){
+			}
+		});
+
 		money = document.getElementById('chargeMoney').value;
 		money = parseInt(money);
 		//    alert("MONEY타입"+ typeof money);
@@ -321,7 +332,7 @@ $(document).ready(function(){
 			money = 0;
 		}
 			$("#points").empty(); 	
-			$("#points").append("$" + (money+myPoint));
+			$("#points").append("$" + (money+pppoint));
 	}	
 
 	
@@ -344,7 +355,19 @@ function charge(num){
 //	  alert(num*10000);
 	chargeNum = chargeNum + num;
 	var chargemoney = $("#chargeMoney").val(chargeNum*10000);
+	let pppoint=0;
 	
+	$.ajax({
+		url:"http://192.168.0.230:3000/login", 
+		type:'post',
+		data : {email:json.email, pwd:json.pwd},
+		success:function( json ){			
+			pppoint = json.myPoint;
+		},
+		error:function(){
+		}
+	});
+
 	money = parseInt(document.getElementById('chargeMoney').value);
 	
 	
@@ -367,7 +390,7 @@ $("#chargeBtn").click(function(){
 	alert(money + typeof money);
 	
 	$.ajax({
-		url:"http://localhost:3000/chargePoints",
+		url:"http://192.168.0.230:3000/chargePoints",
 		type: "get",
 		data:{ money:money, email:email},
 		success:function(){
@@ -415,7 +438,7 @@ $("#check_module").click(function () {
 		if (rsp.success) {
 			var msg = '결제가 완료되었습니다.';
 			$.ajax({
-				url:"http://localhost:3000/chargePoints",
+				url:"http://192.168.0.230:3000/chargePoints",
 				type: "get",
 				data:{ money:money, email:email},
 				success:function(point){
@@ -445,7 +468,7 @@ $("#check_module").click(function () {
 function checkAlertBadge(memNum) {
 
  $.ajax({
-    url:"http://localhost:3000/checkAlertBadge",
+    url:"http://192.168.0.230:3000/checkAlertBadge",
     type:"get",
     data:{memNum:memNum},
     success:function(chkBadge){

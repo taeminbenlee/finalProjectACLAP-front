@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
 	// 최신순 정보 불러오기
 	$.ajax({
-		url:"http://localhost:3000/getNewestClassList",  
+		url:"http://192.168.0.230:3000/getNewestClassList",  
 		type:"post",
 		success:function( data ){
 			$.each(data, function(i, item){
@@ -32,7 +32,7 @@ $(document).ready(function(){
 				if(login != null){
 					let json = JSON.parse(login); 
 					$.ajax({
-						url:"http://localhost:3000/checkLike",  
+						url:"http://192.168.0.230:3000/checkLike",  
 						type:"post",
 						data:{memNum:json.memNum, classNum:item.classNum},
 						success:function(result){
@@ -65,7 +65,7 @@ $(document).ready(function(){
 	
 	// 인기순 정보 불러오기
 	$.ajax({
-		url:"http://localhost:3000/getBestClassList",  
+		url:"http://192.168.0.230:3000/getBestClassList",  
 		type:"post",
 		success:function( data ){
 			
@@ -80,7 +80,7 @@ $(document).ready(function(){
 				if(login != null){
 					let json = JSON.parse(login); 
 					$.ajax({
-						url:"http://localhost:3000/checkLike",  
+						url:"http://192.168.0.230:3000/checkLike",  
 						type:"post",
 						data:{memNum:json.memNum, classNum:item.classNum},
 						success:function(result){
@@ -125,7 +125,7 @@ $(document).ready(function(){
 			input3 = int3;
 		}
 		$.ajax({
-			url:"http://localhost:3000/getRecommendClassList", 
+			url:"http://192.168.0.230:3000/getRecommendClassList", 
 			data:{interest1:input1, interest2:input2, interest3:input3},
 			type:"post",
 			success:function( data ){
@@ -140,7 +140,7 @@ $(document).ready(function(){
 					// like 유무 체크
 					let json = JSON.parse(login); 
 					$.ajax({
-						url:"http://localhost:3000/checkLike",  
+						url:"http://192.168.0.230:3000/checkLike",  
 						type:"post",
 						data:{memNum:json.memNum, classNum:item.classNum},
 						success:function(result){
@@ -204,7 +204,7 @@ $(document).ready(function(){
 				
 				// DB에 저장
 				$.ajax({
-					url:"http://localhost:3000/addLike",  
+					url:"http://192.168.0.230:3000/addLike",  
 					type:"post",
 					data:{memNum:memNum, classNum:likeClassNum},
 					error:function(){
@@ -226,7 +226,7 @@ $(document).ready(function(){
 				
 				// DB 수정
 				$.ajax({
-					url:"http://localhost:3000/delLike",  
+					url:"http://192.168.0.230:3000/delLike",  
 					type:"post",
 					data:{memNum:memNum, classNum:likeClassNum},
 					error:function(){

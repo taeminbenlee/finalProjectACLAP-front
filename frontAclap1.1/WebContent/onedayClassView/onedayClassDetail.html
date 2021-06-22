@@ -19,7 +19,7 @@
  
 <!-- icon -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link href="../fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- font -->
@@ -639,7 +639,7 @@ function dqSubmit(){
 	}
 	else{
 		$.ajax({
-		      url:"http://localhost:3000/writeNotisBbs", 
+		      url:"http://192.168.0.230:3000/writeNotisBbs", 
 		      type:'post',
 		      data:{memNum:json.memNum, nTitle:$("#dqTitle").val(), nContent:$("#dqContent").val()},
 		      success:function( result ){
@@ -754,7 +754,7 @@ $(document).ready(function(){
 		getMemDto(json.memNum);
 	}
 	$.ajax({
-	      url:"http://localhost:3000/classDtail", 
+	      url:"http://192.168.0.230:3000/classDtail", 
 	      type:'post',
 	      data:{classNum:seq},
 	      success:function( dto ){
@@ -891,7 +891,7 @@ $(document).ready(function(){
 	// Like 유무 체크
 	if(login != null){
 		$.ajax({
-			url:"http://localhost:3000/checkLike",  
+			url:"http://192.168.0.230:3000/checkLike",  
 			type:"post",
 			data:{memNum:json.memNum, classNum:seq},
 			success:function(result){
@@ -906,11 +906,11 @@ $(document).ready(function(){
 		});
 	}
 	
-	
+	// classNum = class 고유번호, startDate = class시작날, endDate = class끝나는 날, limitNum = 수업 가능 인원, classtitle = 클래스 제목, masterNum = 클래스 개설자 고유 회원번호
 	function classSchedulList(classNum, startDate, endDate, limitNum, classtitle, masterNum){
 		
 		$.ajax({
-		      url:"http://localhost:3000/classSchedulList", 
+		      url:"http://192.168.0.230:3000/classSchedulList", 
 		      type:'post',
 		      data:{classNum:classNum, startDate:startDate, endDate:endDate},
 		      success:function( map ){
@@ -1239,7 +1239,7 @@ $(document).ready(function(){
 							}
 							
 							$.ajax({
-								url:"http://localhost:3000/participate", 
+								url:"http://192.168.0.230:3000/participate", 
 							    type:'post',
 							    data:{classNum:classNum, memNum:json.memNum, classDate:cdate, name:json.nickName, rPoint:rPoint, participants:participants},
 							    success: function(mag){
@@ -1433,7 +1433,7 @@ $(document).ready(function(){
 
 function getMemDto(memNum){
 	$.ajax({
-		url:"http://localhost:3000/getMemberDto", 			
+		url:"http://192.168.0.230:3000/getMemberDto", 			
 		type:"post",
 		data:{memNum:memNum},
 	 	success:function( memDto ){
@@ -1447,7 +1447,7 @@ function getMemDto(memNum){
 
 function getIncludMember(memNum, classNum, classDate){
 	$.ajax({
-		url:"http://localhost:3000/getIncludMember", 			
+		url:"http://192.168.0.230:3000/getIncludMember", 			
 		type:"post",
 		data:{memNum:memNum, classNum:classNum, rdate:classDate},
 		async:false,
@@ -1519,7 +1519,7 @@ function showLayer3(){
 // 개설클래스 append해주는 부분
 function masterClass(masterNum){
 	$.ajax({
-		url:"http://localhost:3000/masterClassCounter", 			
+		url:"http://192.168.0.230:3000/masterClassCounter", 			
 		type:"post",
 		data:{masterNum:masterNum},
 	 	success:function( map ){
@@ -1825,7 +1825,7 @@ $("#reviewSubmit").click(function(){
 	$("#classNum").val(seq);
 	  
 	  $.ajax({
-		 url:"http://localhost:3000/writeReview", 			
+		 url:"http://192.168.0.230:3000/writeReview", 			
 		 type:"post",
 		 enctype: 'multipart/form-data', 
 		 data: new FormData($("#reviewImages")[0]),  // 필수 
@@ -1865,7 +1865,7 @@ $("#reviewSubmit").click(function(){
 //~~~~~~ 리뷰 별점평균 뿌리기~~~~~
 
 $.ajax({
-		url:"http://localhost:3000/getAvg", 			
+		url:"http://192.168.0.230:3000/getAvg", 			
 		type:"get",
 		data:{classNum:seq},
 		success:function(map){
@@ -1960,7 +1960,7 @@ getListReview()
 // ~~~~~~~~~리뷰 리스트 뿌리기~~~~~
 function getListReview(){
 $.ajax({
-		url:"http://localhost:3000/getReviewList", 			
+		url:"http://192.168.0.230:3000/getReviewList", 			
 		type:"get",
 		data:{classNum:seq},
 	 	success:function(list){ 	
@@ -2064,7 +2064,7 @@ function reviewUp(reviewSeq){
 	//alert("리뷰시퀀스" + reviewSeq);
 $("#reviewImages").append("<input type='hidden' name='reviewSeq' id='reviewSeq' value=''>");
 	$.ajax({
-		url:"http://localhost:3000/getReview",
+		url:"http://192.168.0.230:3000/getReview",
 		type: "get",
 		data: {reviewSeq:reviewSeq},
 		success:function(data){
@@ -2091,7 +2091,7 @@ $("#reviewImages").append("<input type='hidden' name='reviewSeq' id='reviewSeq' 
 				//	alert("수정하기 버튼 클릭");
 					
 					$.ajax({
-						url:"http://localhost:3000/updateReview",
+						url:"http://192.168.0.230:3000/updateReview",
 						type: "post",
 						data: new FormData($("#reviewImages")[0]),  // 필수 
 						processData: false, // 필수
@@ -2121,7 +2121,7 @@ $("#reviewImages").append("<input type='hidden' name='reviewSeq' id='reviewSeq' 
 function reviewDel(reviewSeq){
 	
 	$.ajax({
-		url:"http://localhost:3000/reviewDel",
+		url:"http://192.168.0.230:3000/reviewDel",
 		type:"get",
 		data:{reviewSeq:reviewSeq},
 		success:function(){
@@ -2142,7 +2142,7 @@ function reviewDel(reviewSeq){
 		return;
 	}
 	$.ajax({
-		url:"http://localhost:3000/checkMember",
+		url:"http://192.168.0.230:3000/checkMember",
 		type:"post",
 		data:{classNum:seq, memNum:memNum}, 
 		success:function( count ){
@@ -2174,7 +2174,7 @@ function DetailLike (){
 			$(".DetailLikeBtn").css("color", "red");
 			$(".DetailLikeBtn").attr('check', 'yes');
 			$.ajax({
-				url:"http://localhost:3000/addLike",  
+				url:"http://192.168.0.230:3000/addLike",  
 				type:"post",
 				data:{memNum:memNum, classNum:seq},
 				error:function(){
@@ -2186,7 +2186,7 @@ function DetailLike (){
 			$(".DetailLikeBtn").css("color", "black");
 			$(".DetailLikeBtn").attr('check', 'no');
 			$.ajax({
-				url:"http://localhost:3000/delLike",  
+				url:"http://192.168.0.230:3000/delLike",  
 				type:"post",
 				data:{memNum:memNum, classNum:seq},
 				error:function(){

@@ -68,7 +68,7 @@ $(document).ready(function(){
 		}else{
 	        let log= $("#loginFrm").serialize();	
 			$.ajax({
-				url:"http://localhost:3000/login", 
+				url:"http://192.168.0.230:3000/login", 
 				type:'post',
 				data:log,
 				success:function( data ){
@@ -134,7 +134,7 @@ $("#findPwdEmailSend").click(function(){
 	}	
 	else{
 		$.ajax({
-			url:"http://localhost:3000/checkEmail", 
+			url:"http://192.168.0.230:3000/checkEmail", 
 			type:'post',
 			data:{email:$("#findPwdEmail").val()},
 			success:function( data ){
@@ -162,7 +162,7 @@ $("#findPwdEmailCodeCheck").click(function(){
 
 	if($("#findPwdEmailCode").val() == code){
 		$.ajax({
-			url:"http://localhost:3000/findPwdAfUpdate", 
+			url:"http://192.168.0.230:3000/findPwdAfUpdate", 
 			type:'post',
 			data:{email:$("#findPwdEmail").val()},
 			success:function( data ){
@@ -227,7 +227,7 @@ function attachSignin(element) {
 // 구글 & 카카오 로그인 
 function Google_Kakao_Log(email, userName, nickName, profilePic){
 	$.ajax({
-		url:"http://localhost:3000/googleKakaoLogin", 
+		url:"http://192.168.0.230:3000/googleKakaoLogin", 
 		type:'post',
 		data:{email:email},
 		success:function( data ){
@@ -255,9 +255,9 @@ function Google_Kakao_Log(email, userName, nickName, profilePic){
 // 구글 & 카카오 회원 가입 
 function Google_Kakao_Regi(email, userName, nickName, profilePic){
 	if (profilePic == "")
-		profilePic = "http://localhost:3000//upload//sample.png";
+		profilePic = "http://192.168.0.230:3000//upload//sample.png";
 	$.ajax({
-		url:"http://localhost:3000/googleKakaoRegi", 
+		url:"http://192.168.0.230:3000/googleKakaoRegi", 
 		type:'post',
 		data : {email:email, userName:userName, nickName:nickName, profilePic:profilePic},
 		success:function( data ){			
@@ -302,7 +302,7 @@ function emailSend(){
 	 	mail = $("#findPwdEmail").val();
 	  
 	$.ajax({
-		url:"http://localhost:3000/emailSend",
+		url:"http://192.168.0.230:3000/emailSend",
 		type:'post',
 		data:{email:mail, num:code},
 		error:function(){
@@ -360,7 +360,7 @@ $("#_checkEmail").change(function() {
 		let email = $("#_remail").val();
 		
 		$.ajax({
-			url:"http://localhost:3000/checkEmail", 
+			url:"http://192.168.0.230:3000/checkEmail", 
 			type:'post',
 			data:{email:email},
 			success:function( data ){
@@ -408,7 +408,7 @@ $("#_checkNickName").change(function() {
 	else{	
 		let nickName = $("#_nickName").val();
 		$.ajax({
-			url:"http://localhost:3000/checkNickName", 
+			url:"http://192.168.0.230:3000/checkNickName", 
 			type:'post',
 			data:{nickName:nickName},
 			success:function( data ){
@@ -481,7 +481,7 @@ $(".btn-signup").click(function() {
 	}
 	else{
 		$.ajax({
-			url:"http://localhost:3000/addMember", 
+			url:"http://192.168.0.230:3000/addMember", 
 			type:'post',
 			data : new FormData($("#regiFrm")[0]), 
 			enctype : 'multipart/form-data',

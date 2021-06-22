@@ -358,7 +358,7 @@ $(document).ready(function () {
 	function getUserListData(pgNumber){
 		//$("#mainScr").load("../adminPageView/adminCListUList.html");
 	      $.ajax({
-	         url:"http://localhost:3000/memlist",
+	         url:"http://192.168.0.230:3000/memlist",
 	         type:"get",
 	         data:{ name:$("#userName").val(), page:pgNumber},
 	         success:function(list){
@@ -415,7 +415,7 @@ $(document).ready(function () {
 	// 회원정보 수정 초기화 값 셋팅 
 	function setMemInfo(seq){
 		$.ajax({
-	        url:"http://localhost:3000/myinfo",
+	        url:"http://192.168.0.230:3000/myinfo",
 	        type:"post",
 	        data:{ memNum:seq},
 	        success:function(data){
@@ -489,7 +489,7 @@ $(document).ready(function () {
 		let nickName = $("#newNickName").val();
 		let originalNname = $("#_checkNname").val();
 		$.ajax({
-			url:"http://localhost:3000/checkNickName", 
+			url:"http://192.168.0.230:3000/checkNickName", 
 			type:'post',
 			data:{nickName:nickName},
 			success:function( data ){
@@ -527,7 +527,7 @@ $(document).ready(function () {
 	// 회원정보 수정 AF
 	function memberUpdateAf(){
 	$.ajax({
-		url:"http://localhost:3000/myPageUserUpdate", 
+		url:"http://192.168.0.230:3000/myPageUserUpdate", 
 		type:'post',
 		data : new FormData($("#myPageUserUpdate")[0]), 
 		enctype : 'multipart/form-data',
@@ -555,7 +555,7 @@ $(document).ready(function () {
 		let dropOut = confirm('정말로 탈퇴 하시겠습니까');
 		if(dropOut){
 			$.ajax({
-				url:"http://localhost:3000/memberDropOut", 
+				url:"http://192.168.0.230:3000/memberDropOut", 
 				type:'post',
 				data:{memNum:$("#_memNums").val()},
 				success:function( data ){
@@ -581,7 +581,7 @@ $(document).ready(function () {
 	
 	function countUserList() {
 		$.ajax({
-			url:"http://localhost:3000/userCount",
+			url:"http://192.168.0.230:3000/userCount",
 			type:"get",
 			data:{page:0, name:$("#userName").val()},
 			success:function(count){
@@ -676,7 +676,7 @@ $(document).ready(function () {
 	//----------- 클래스 리스트 뿌리기------------
 	function classlist(pNum) {
 		$.ajax({
-			url:"http://localhost:3000/classlist",
+			url:"http://192.168.0.230:3000/classlist",
 			type:"get",
 			data:{ name:$("#className").val(), page:pNum},
 			success:function(list){
@@ -715,7 +715,7 @@ $(document).ready(function () {
 					let seq = $(this).attr('seq');
 					if(check){
 						$.ajax({
-							url:"http://localhost:3000/onedayClassDelete",
+							url:"http://192.168.0.230:3000/onedayClassDelete",
 							type:"get",
 							data:{classNum:seq},
 							success:function(result){
@@ -737,7 +737,7 @@ $(document).ready(function () {
 					let seq = $(this).attr('seq');
 					if(check){
 						$.ajax({
-							url:"http://localhost:3000/onedayClassRestart",
+							url:"http://192.168.0.230:3000/onedayClassRestart",
 							type:"get",
 							data:{classNum:seq},
 							success:function(result){
@@ -769,7 +769,7 @@ $(document).ready(function () {
 
 	function countClassList() {
 		$.ajax({
-			url:"http://localhost:3000/classCount",
+			url:"http://192.168.0.230:3000/classCount",
 			type:"get",
 			data:{page:0, name:$("#className").val()},
 			success:function(count){
@@ -847,7 +847,7 @@ $(document).ready(function () {
 	function noticeListData( pNumber ) {
 		
 		$.ajax({
-			url:"http://localhost:3000/noticeListData",
+			url:"http://192.168.0.230:3000/noticeListData",
 			type:"get",
 			data:{ page:pNumber, choice:$("#_choice").val(), search:$("#_searchWord").val() },
 			success:function( list ){
@@ -889,7 +889,7 @@ $(document).ready(function () {
 	function noticeListCount() {
 		
 		$.ajax({
-			url:"http://localhost:3000/noticeListCount",
+			url:"http://192.168.0.230:3000/noticeListCount",
 			type:"get",
 			data:{ page:0, choice:$("#_choice").val(), search:$("#_searchWord").val() },
 			success:function( count ){
@@ -957,7 +957,7 @@ $(document).ready(function () {
 		var tseq=$(this).attr('value');
 		
 		$.ajax({
-			url:"http://localhost:3000/noticeDetail",
+			url:"http://192.168.0.230:3000/noticeDetail",
 			type:"get",
 			data:{seq:tseq },
 			success:function( bbs ){
@@ -1042,7 +1042,7 @@ $(document).ready(function () {
 	         $("#detailModal").modal('hide');
 				
 	         $.ajax({
-	  	 		url:"http://localhost:3000/noticeAnswerAf",
+	  	 		url:"http://192.168.0.230:3000/noticeAnswerAf",
 	  	 		type:"get",
 	  	 		data:{seq:$('#_noticeNum').val() },
 	  	 		success:function( data ){

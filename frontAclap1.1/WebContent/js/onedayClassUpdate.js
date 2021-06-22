@@ -22,7 +22,7 @@ $(document).ready(function(){
 	//----------------------- 저장된 클래스 정보 뿌려주기 -------------------------
 	let seq = urlParams.seq;	
 	$.ajax({
-		url:"http://localhost:3000/onedayClassInfo", 
+		url:"http://192.168.0.230:3000/onedayClassInfo", 
 		type:'post',
 		data : {classNum:seq}, 
 		success:function( data ){			
@@ -202,7 +202,7 @@ $(document).ready(function(){
 			$("#_aboutMeInput").val(data.aboutMe.replaceAll('<br>',''));
 			
 			// 유투브 링크
-			$("#_youtubeLinkInput").val(data.youtubeLint);
+			$("#_youtubeLinkInput").val(data.youtubeLink);
 		},
 		
 		error:function(){
@@ -829,7 +829,7 @@ function onedayClassWriteAf(){
 	}
 	else{
 		$.ajax({
-			url:"http://localhost:3000/onedayClassUpdate", 
+			url:"http://192.168.0.230:3000/onedayClassUpdate", 
 			type:'post',
 			data : new FormData($("#onedayClassWriteFrm")[0]), 
 			enctype : 'multipart/form-data',

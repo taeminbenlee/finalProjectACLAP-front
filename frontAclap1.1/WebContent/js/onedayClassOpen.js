@@ -43,7 +43,7 @@ $(document).ready(function(){
 		    else{
 
 		    	$.ajax({
-					url:"http://localhost:3000/contactMail", 
+					url:"http://192.168.0.230:3000/contactMail", 
 					type:'post',
 					data:{name:$("#contactName").val(), mail:$("#contactEmail").val(), content:$("#contactText").val()},
 					success:function( result ){

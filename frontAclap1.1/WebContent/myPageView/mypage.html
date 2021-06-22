@@ -17,7 +17,7 @@
 
 <!-- icon -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link href="../fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
 
 <!-- mypage CSS -->
 <link rel="stylesheet" href="../css/mypage.css">
@@ -84,7 +84,7 @@ $(document).ready(function(){
 		code = makeNum
 	 
 		$.ajax({
-			url:"http://localhost:3000/emailSend",
+			url:"http://192.168.0.230:3000/emailSend",
 			type:'post',
 			data:{email:json.email, num:code},
 			error:function(){
@@ -175,7 +175,7 @@ $(document).ready(function(){
 		let phoneCheck = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; // 휴대전화 정규식
 		let nickName = $("#newNickName").val();
 		$.ajax({
-			url:"http://localhost:3000/checkNickName", 
+			url:"http://192.168.0.230:3000/checkNickName", 
 			type:'post',
 			data:{nickName:nickName},
 			success:function( data ){
@@ -213,7 +213,7 @@ $(document).ready(function(){
 		// 회원정보 수정 AF
 		function memberUpdateAf(){
 		$.ajax({
-			url:"http://localhost:3000/myPageUserUpdate", 
+			url:"http://192.168.0.230:3000/myPageUserUpdate", 
 			type:'post',
 			data : new FormData($("#myPageUserUpdate")[0]), 
 			enctype : 'multipart/form-data',
@@ -243,7 +243,7 @@ $(document).ready(function(){
 			let dropOut = confirm('정말로 탈퇴 하시겠습니까');
 			if(dropOut){
 				$.ajax({
-					url:"http://localhost:3000/memberDropOut", 
+					url:"http://192.168.0.230:3000/memberDropOut", 
 					type:'post',
 					data:{memNum:json.memNum},
 					success:function( data ){
@@ -620,7 +620,7 @@ $(document).ready(function() {
 
 	// mypage 접속시 div append
 	$.ajax({
-		url:"http://localhost:3000/myinfo", 
+		url:"http://192.168.0.230:3000/myinfo", 
 		type:'post',
 		data:{memNum:memNum},
 		success:function( dto ){
@@ -691,7 +691,7 @@ $(document).ready(function() {
 		$("#_date2").val(mdate);
 		
 		$.ajax({
-			url:"http://localhost:3000/mySchedule", 
+			url:"http://192.168.0.230:3000/mySchedule", 
 			type:'post',
 			data:{rdate:mdate, memNum:memNum},
 			async:false,
@@ -718,6 +718,11 @@ $(document).ready(function() {
 						let pmonth = date.getMonth() + 1;
 						let pday = date.getDate();
 						
+						let className = val.title;
+			            if(className.length > 17){
+			                 className = className.substring(0,15)+"...";
+			            }
+			            
 						pdate = Number(pyear + two(pmonth + "") + two(pday+""));
 						
 						let rdate = Number(val.rdate.replace(/-/gi, ""));
@@ -743,7 +748,7 @@ $(document).ready(function() {
 									+ "<div class='d-flex flex-column border bg-white ml-md-5 p-sm-0 status' id='status' rdate='" + val.rdate + "' class_seq='"+ val.classNum +"' classDel='" + val.del + "'>"
 										+ "<div class='_arrow' id='arrow'></div>"
 										
-										+ "<div class='text-dark pl-sm-2 _title'>" + val.title 
+										+ "<div class='text-dark pl-sm-2 _title'>" + className 
 											+ cStatus
 										+ "</div>"
 															
@@ -766,7 +771,7 @@ $(document).ready(function() {
 			let classDel = $(this).attr("classDel"); // 클릭한 스케줄이 삭제되었는지 유무
 			
 			$.ajax({
-				url:"http://localhost:3000/classDtail", 
+				url:"http://192.168.0.230:3000/classDtail", 
 				type:'post',
 				data:{classNum:classNum},
 				async:false,
@@ -783,8 +788,9 @@ $(document).ready(function() {
 					let b_info = "<div class='d-flex flex-row align-items-center m_info'>"
 									+ "<div class='pr-sm-2 pr-1 a_masterPic'> <img src='" + classDto.profilePic + "' alt='' width='50' height='50' class='myPageProfile'> </div>"
 									+ "<div class='d-flex flex-column tps'>"
-										+ "<div><b>" + classDto.title + "</b></div>"
-										+ "<div id='small-font'>" + classDto.primaryCategory + "-"  + classDto.secondaryCategory + "</div>"
+										+ "<div style='width:220px'><b>" + classDto.title + "</b></div>"
+										//+ "<div id='small-font'>" + classDto.primaryCategory + "-"  + classDto.secondaryCategory + "</div>"
+										+ "<div id='small-font'>" + classDto.primaryCategory + classDto.secondaryCategory.replace(/\#/g, '-') + "</div>"
 									+ "</div>"
 							   + "</div>";
 							   
@@ -800,12 +806,12 @@ $(document).ready(function() {
 	             	let ct_info = "<div class='d-flex flex-column justify-content-center mct_info'>"
 	             					+ "<div class='pb-2'><span class='fa fa-book-reader' style='margin-right: 10px'></span><b>선생 소개</b></div>"
 	             					+ "<div class='d-flex flex-row align-items-center rounded border mct_box'>"
-		           						+ "<div class='p-1' id='small-font'>" + classDto.aboutMe + "</div>"
+		           						+ "<div class='aboutMe' id='small-font'>" + classDto.aboutMe + "</div>"
 		             				+ "</div>"
 		             				
 	             					+ "<div class='pb-2 pt-2'><span class='fa fa-chalkboard-teacher' style='margin-right: 10px'></span><b>수업 소개</b></div>"
 	             					+ "<div class='d-flex flex-row align-items-center rounded border mct_box'>"
-		          						+ "<div class='p-1' id='small-font'>" + classDto.information + "</div>"    
+		          						+ "<div class='classInfo' id='small-font'>" + classDto.information + "</div>"    
 		          					+ "</div>"
 		          					
 		          					+ "<div class='btn_sdel'>"
@@ -876,7 +882,7 @@ $(document).ready(function() {
 	
 	function getReceiptData(classDate, classNum, memNum) {
 		$.ajax({
-			url:"http://localhost:3000/getReceiptData", 
+			url:"http://192.168.0.230:3000/getReceiptData", 
 			type:'post',
 			data:{classDate:classDate, classNum:classNum, memNum:memNum},
 			success:function( receipt ){
@@ -986,7 +992,7 @@ $(document).ready(function() {
 		let price = $(this).attr("price");
    
 		$.ajax({
-			url:"http://localhost:3000/cancelSchedule", 			
+			url:"http://192.168.0.230:3000/cancelSchedule", 			
 			type:"post",
 			data:{memNum:memNum, classNum:classNum, classDate:classDate, rPoint:price},
 			success:function( count ){
@@ -1040,7 +1046,7 @@ function stampTable( memNum, pageNum ){
 	// $(".hide_table").attr('class', "show_table");
 	
 	$.ajax({
-		url: 'http://localhost:3000/myStampList',
+		url: 'http://192.168.0.230:3000/myStampList',
 		type: 'POST',
 		dataType: 'json',
 		data: {memNum:memNum, pageNum:pageNum},
@@ -1064,7 +1070,7 @@ function stampTable( memNum, pageNum ){
 					priCate += "<i class='fas fa-utensils' style='font-size:50px;color: #1E3269;'></i>";
 				}else if(stampPriCate == '프로그래밍'){
 					priCate += "<i class='fas fa-code' style='font-size:50px;color: #1E3269;'></i>";
-				}else if(stampPriCate == '스포츠레져'){
+				}else if(stampPriCate == '스포츠레저'){
 					priCate += "<i class='fas fa-dumbbell' style='font-size:50px;color: #1E3269;'></i>";
 				}
 				if(i==6){
@@ -1098,7 +1104,7 @@ function stampTable( memNum, pageNum ){
 function stampCount(memNum) {
 	
 	$.ajax({
-		url:"http://localhost:3000/stampCount",
+		url:"http://192.168.0.230:3000/stampCount",
 		type:"get",
 		data:{memNum:memNum},
 		success:function( totalCount ){
@@ -1192,7 +1198,7 @@ function loadPage( memNum, totalCount  ) {
 			eventSources: [{
 			events: function(info, successCallback, failureCallback) {
 				$.ajax({
-					url: 'http://localhost:3000/myclsScheduleData',
+					url: 'http://192.168.0.230:3000/myclsScheduleData',
 					type: 'POST',
 					dataType: 'json',
 					data: {memNum:memNum},
@@ -1200,7 +1206,9 @@ function loadPage( memNum, totalCount  ) {
 						// alert('success');
 						var ev = Array();
 						$.each(data, function (i, entry) {
-							ev.push({title: entry.title + entry.name,
+							
+						let name = " ("+entry.name+")";
+							ev.push({title: entry.title + name,
 								
 								start: entry.rdate, end:entry.rdate
 							});
@@ -1232,7 +1240,7 @@ function loadPage( memNum, totalCount  ) {
 //내가 개설한 클래스의 모든 목록을 가져온다
 function getMyClassList() {
 	$.ajax({
-		url:"http://localhost:3000/getMyClassList",
+		url:"http://192.168.0.230:3000/getMyClassList",
 		type:"get",
 		data:{masterNum:memNum},
 		success:function( list ){
@@ -1355,7 +1363,7 @@ $(document).on("click", ".myClassStop", function () {
 	
 	$("#myClassStop").on('click', function(){
 		$.ajax({
-			url:"http://localhost:3000/onedayClassDelete",
+			url:"http://192.168.0.230:3000/onedayClassDelete",
 			type:"post",
 			data:{classNum:classNum},
 			success:function( result ){
@@ -1373,7 +1381,7 @@ $(document).on("click", ".myClassStop", function () {
 	/* 
 		if(del){
 			$.ajax({
-				url:"http://localhost:3000/onedayClassDelete",
+				url:"http://192.168.0.230:3000/onedayClassDelete",
 				type:"post",
 				data:{classNum:classNum},
 				success:function( result ){
@@ -1394,7 +1402,7 @@ function searchMemList(classNum){
 	let classDate = $("#_date2").val();
 	
 	$.ajax({
-		url:"http://localhost:3000/getMyClassParticipants",
+		url:"http://192.168.0.230:3000/getMyClassParticipants",
 		type:"get",
 		data:{classNum:classNum, classDate:classDate},
 		success:function( list ){
@@ -1453,7 +1461,7 @@ getLikeClass(0);
 getLikeClassCount();
 function getLikeClass(pNumber){
 	$.ajax({
-		url:"http://localhost:3000/getLikeClassList",  
+		url:"http://192.168.0.230:3000/getLikeClassList",  
 		type:"post",
 		data:{ page:pNumber, memNum:memNum },
 		success:function( data ){
@@ -1497,7 +1505,7 @@ function getLikeClass(pNumber){
 // 글의 총 수 
 function getLikeClassCount(){
 	$.ajax({
-		url:"http://localhost:3000/getLikeClassCount",
+		url:"http://192.168.0.230:3000/getLikeClassCount",
 		type:"post",
 		data:{memNum:memNum},
 		success:function( count ){

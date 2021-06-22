@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ACLAP</title>
 
 
 
@@ -16,7 +16,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- icon -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link href="../fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
 
 <link rel="stylesheet" href="../css/categoryCss.css">
 
@@ -579,7 +579,7 @@ function classListData( pNumber, myChoice, mySearch, pcVal ) {
 			
 			
 	$.ajax({
-		url:"http://localhost:3000/classListData",
+		url:"http://192.168.0.230:3000/classListData",
 		type:"get",
 		
 		data:{ page:pNumber, choice:myChoice, search:mySearch, primaryCategory: pcVal  },
@@ -605,7 +605,7 @@ function classListData( pNumber, myChoice, mySearch, pcVal ) {
 				startDD = startDD.substring(0,10);
 				//<img class='classImg' src='"+val.image1+"' alt='no image'>"
 				
-				
+				// alert(val.avgPoint);
 				app = "<div class='classCard' id='"+val.classNum +"'>"
 				app += "<img class='classImg' src='"+val.image1+"' alt='no image' align='center'>";
 				app += "<div class='classContainer'>";
@@ -947,7 +947,7 @@ function goBackClassList(pNumber, mySearch, myChoice, cate, ssseq) {
 
 	
 	$.ajax({
-		url:"http://localhost:3000/classListData",
+		url:"http://192.168.0.230:3000/classListData",
 		type:"get",
 		data:{ page:pNumber, choice:myChoice, search:mySearch, primaryCategory:cate},
 		success:function( list ){
